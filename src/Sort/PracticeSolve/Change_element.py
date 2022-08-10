@@ -7,9 +7,5 @@ for i in range(k):
         num1[i], num2[i] = num2[i], num1[i]
     else:
         break
-        
-sum = 0
-for i in num1:
-    sum += i
 
-print(sum)
+print(sum(num1))
