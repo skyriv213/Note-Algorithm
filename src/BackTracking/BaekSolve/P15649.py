@@ -2,9 +2,8 @@ n, m = map(int, input().split())
 
 s = []
 
-# 메서드
 def dfs():
-    # 배열의 길이가 m이 되는 경우 해당 리스트 내의 숫자들을 map으로 join하여 출력 후 해당 dfs 종료
+    # 배열의 길이가 m이 되는 경우 해당 리스트 내의 숫자들을 join 메서드를 활용하여 출력 후 해당 dfs 종료
     if len(s) == m:
         print(" ".join(map(str, s)))
         return
@@ -18,3 +17,4 @@ def dfs():
             dfs()
             s.pop()
 
+dfs()
