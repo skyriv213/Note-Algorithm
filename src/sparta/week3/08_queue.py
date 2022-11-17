@@ -23,7 +23,6 @@ class Queue:
 
     # 맨앞 데이터 뽑기
     def dequeue(self):
-        # 어떻게 하면 될까요?
         if self.is_empty():
             return "Queue is Empty"
         delete_head = self.head
@@ -32,14 +31,12 @@ class Queue:
 
     # 맨 앞의 데이터 보기
     def peek(self):
-        # 어떻게 하면 될까요?
         if self.is_empty():
             return "Queue is Empty"
         return self.head.data
 
     # 큐가 empty 여부 확인
     def is_empty(self):
-        # 어떻게 하면 될까요?
         return self.head is None
 
 
@@ -52,3 +49,7 @@ queue.enqueue(34)
 print(queue.peek())
 queue.enqueue(35)
 print(queue.peek())
+
+queue = []
+queue.append(5)
+queue.popleft()
