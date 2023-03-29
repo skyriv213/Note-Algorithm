@@ -9,3 +9,9 @@
 # b = int(str(1) * m)
 # print(GCD(a, b))
 
+i = int('111',2)
+b = bin(213)[2:]
+o = oct(213)
+h = hex(213)
+print(i)
+print(b)
