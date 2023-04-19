@@ -14,3 +14,4 @@ for _ in range(m):
     a, b = map(int, input().split())
     print(s[b]-s[a-1])
 
+수
