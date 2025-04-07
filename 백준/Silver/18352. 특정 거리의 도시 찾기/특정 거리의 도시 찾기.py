@@ -1,45 +1,36 @@
 from collections import deque
 import sys
 
-input = sys.stdin.readline
+input = sys.stdin.readline  # 빠른 입력 전환
 
-n, m, k, x = map(int, input().split())
-graph = [[] for i in range(n + 1)]
+# 도시의 개수, 도로의 개수, 거리 정보, 출발 도시 번호
+n, m, k, a = map(int, input().split())
+
+# 도시의 그래프
+city = [[] for _ in range(n + 1)]
+
 for _ in range(m):
-    # a에서 b까지의 도로가 존재
-    a, b = map(int, input().split())
-    graph[a].append(b)
+    i, b = map(int, input().split())
+    city[i].append(b)
 
-# 주어진 도시를 기준으로 정렬
-distance = [-1] * (n + 1)
-distance[x] = 0
+def bfs(start,k):
+    queue = deque([start])
+    res = []
+    checked = [-1] * (n + 1)
+    checked[start] = 0
+    while queue:
+        c = queue.popleft()
+        for i in city[c]:
+            if checked[i] == -1:
+                checked[i] = checked[c] + 1
+                queue.append(i)
+                if checked[i] == k:
+                    res.append(i)
+    return res
 
-
-# BFS로 접근
-# deque에 원소 추가
-q = deque([x])
-while q:
-    now = q.popleft()
-    # 반복문 순회
-    for nn in graph[now]:
-        # 기존의 값이 0이면 한번도 지나가지않은 도시
-        if distance[nn] == -1:
-            # now 도시를 거쳐서 도시로 온것이므로 now 거리 값에 +1을 해준다
-            distance[nn] = distance[now] + 1
-            q.append(nn)
-
-# 만약 반복문을 통해 거리의 값이 k인 도시가 존재한다면 s 문자열에 join 메서드로 추가
-check = False
-for i in range(1, n + 1):
-    if distance[i] == k:
-        print(i)
-        check = True
-if not check:
+res = bfs(a,k)
+res.sort()
+if not res:
     print(-1)
-
-# # 만약 s의 값이 ' '랑 동일하다면 해당 -1값을 출력 → 시간 초과
-# if s == ' ':
-#     print(-1)
-# else:
-#     print(s)
-
+else:
+    print('\n'.join(map(str, res)))
