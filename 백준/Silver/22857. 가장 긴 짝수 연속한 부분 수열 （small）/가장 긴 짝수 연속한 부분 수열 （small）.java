@@ -1,4 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 
 import java.io.*;
 
@@ -16,28 +15,24 @@ public class Main {
                 .mapToInt(Integer::parseInt).toArray();
         int[] arr = stream(br.readLine().split(" "))
                 .mapToInt(Integer::parseInt).toArray();
-        int k = input[1], max = 0;
-        int[][] dp = new int[arr.length + 1][k + 1];
 
-        for (int i = 1; i <= arr.length; i++) {
-            for (int j = 0; j <= k; j++) {
-                if (arr[i - 1] % 2 == 1) {
-                    if (j > 0) {
-                        dp[i][j] = dp[i - 1][j - 1];
-                    }
-                } else {
-                    dp[i][j] = dp[i - 1][j] + 1;
+        int n = input[0], k = input[1];
+
+        int start = 0, cnt = 0, max = 0;
+        
+        for (int end = 0; end < n; end++) {
+            if (arr[end] % 2 != 0) {
+                cnt++;
+            }
+            while (cnt > k) {
+                if (arr[start] % 2 != 0) {
+                    cnt--;
                 }
+                start++;
             }
-        }
+            max = Math.max(max, end - start + 1 - cnt);
 
-        for (int i = 0; i < dp.length; i++) {
-            for (int j = 0; j < dp[i].length; j++) {
-                max = Math.max(max, dp[i][j]);
-            }
         }
-
         System.out.println(max);
-
     }
 }
