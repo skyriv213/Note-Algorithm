@@ -8,7 +8,7 @@ for 문으로 변경
 
 '''
 # import sys
-#
+# 
 # sys.setrecursionlimit(2000000)
 
 n = int(input())
@@ -39,23 +39,14 @@ attack = 0
 #         bt(x+1)
 #
 # bt(0)
-if pa>=pb:
-    for x in range((n // pa) + 1):
-        rb = n - (pa * x)
-        y = rb // pb
-        score = a * x + b * y
-        if score > attack:
-            attack = score
-            ans[0] = x
-            ans[1] = y
-else:
-    for y in range((n // pb) + 1):
-        rb = n - (pb * y)
-        x = rb // pa
-        score = a * x + b * y
-        if score > attack:
-            attack = score
-            ans[0] = x
-            ans[1] = y
+
+for x in range((n // pa) + 1):
+    rb = n - (pa * x)
+    y = rb // pb
+    score = a * x + b * y
+    if score > attack:
+        attack = score
+        ans[0] = x
+        ans[1] = y
 
 print(ans[0], ans[1])
